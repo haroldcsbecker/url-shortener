@@ -41,6 +41,20 @@ final class StatsGetter
     }
 
     /**
+     * Remove url.
+     *
+     * @param array $data The form data
+     *
+     * @return UrlData
+     */
+    public function getStats(array $data)
+    {
+        $result = $this->repository->get($data);
+
+        return $result;
+    }
+
+    /**
      * Input validation.
      *
      * @param array $data The form data

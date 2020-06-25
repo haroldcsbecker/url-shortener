@@ -3,7 +3,7 @@
 use Slim\App;
 
 return function (App $app) {
-    $app->get('/stats', \App\Action\GlobalStatsAction::class);
+    $app->get('/stats', \App\Action\StatsAction::class);
     $app->get('/users/{userId}/stats', \App\Action\UserStatsAction::class);
 
     $app->get('/stats/{id}', \App\Action\SingleStatAction::class);

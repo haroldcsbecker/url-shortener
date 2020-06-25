@@ -23,6 +23,7 @@ class StatsRepository
     {
         $this->connection = $connection;
     }
+
     /**
      * Get url row.
      *
@@ -33,5 +34,23 @@ class StatsRepository
     public function getById(array $data)
     {
         return $this->connection->table('url')->find($data['id']);
+    }
+
+    /**
+     * Get url rows.
+     *
+     * @param void
+     *
+     * @return array
+     */
+    public function get(): array
+    {
+        $result['hits'] = $this->connection->table('url')->sum('hits');
+        $result['urlCount'] = $this->connection->table('url')->count();
+        $result['topUrls'] = $this->connection->table('url')
+            ->select('id', 'hits', 'url', 'shortUrl')
+            ->get();
+
+        return $result;
     }
 }
