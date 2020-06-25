@@ -26,7 +26,7 @@ final class StatsGetter
     }
 
     /**
-     * Remove url.
+     * Get stats of url by id.
      *
      * @param array $data The form data
      *
@@ -41,13 +41,28 @@ final class StatsGetter
     }
 
     /**
-     * Remove url.
+     * Get stats of url by id.
      *
      * @param array $data The form data
      *
      * @return UrlData
      */
-    public function getStats(array $data)
+    public function getStatsByUser(array $data)
+    {
+        $this->validateUserInput($data);
+        $result = $this->repository->getStatsByUser($data);
+
+        return $result;
+    }
+
+    /**
+     * Get stats of urls.
+     *
+     * @param array $data The form data
+     *
+     * @return array
+     */
+    public function getStats(array $data): array
     {
         $result = $this->repository->get($data);
 
@@ -68,6 +83,27 @@ final class StatsGetter
         $errors = [];
         if (empty($data['id'])) {
             $errors['id'] = 'Input required';
+        }
+
+        if ($errors) {
+            throw new ValidationException('Please check your input', $errors);
+        }
+    }
+
+    /**
+     * Input validation.
+     *
+     * @param array $data The form data
+     *
+     * @throws ValidationException
+     *
+     * @return void
+     */
+    private function validateUserInput(array $data): void
+    {
+        $errors = [];
+        if (empty($data['userId'])) {
+            $errors['userId'] = 'Input required';
         }
 
         if ($errors) {
