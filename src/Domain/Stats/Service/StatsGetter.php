@@ -1,26 +1,26 @@
 <?php
 
-namespace App\Domain\URL\Service;
+namespace App\Domain\Stats\Service;
 
-use App\Domain\URL\Repository\UrlRepository;
+use App\Domain\Stats\Repository\StatsRepository;
 use App\Exception\ValidationException;
 
 /**
  * Service.
  */
-final class UrlRemover
+final class StatsGetter
 {
     /**
-     * @var UrlRepository
+     * @var StatsRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param UrlRepository $repository The repository
+     * @param StatsRepository $repository The repository
      */
-    public function __construct(UrlRepository $repository)
+    public function __construct(StatsRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -30,12 +30,14 @@ final class UrlRemover
      *
      * @param array $data The form data
      *
-     * @return void
+     * @return UrlData
      */
-    public function removeUrl(array $data): void
+    public function getStatsById(array $data)
     {
         $this->validateInput($data);
-        $this->repository->delete($data);
+        $result = $this->repository->getById($data);
+
+        return $result;
     }
 
     /**

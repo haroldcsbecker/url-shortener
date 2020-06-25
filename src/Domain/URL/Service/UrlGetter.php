@@ -2,13 +2,13 @@
 
 namespace App\Domain\URL\Service;
 
-use App\Domain\URl\Repository\UrlRepository;
+use App\Domain\URL\Repository\UrlRepository;
 use App\Exception\ValidationException;
 
 /**
  * Service.
  */
-final class UrlUpdater
+final class UrlGetter
 {
     /**
      * @var UrlRepository
@@ -35,7 +35,7 @@ final class UrlUpdater
     public function getAndUpdateUrl(array $data): string
     {
         $this->validateInput($data);
-        $result = $this->repository->get($data);
+        $result = $this->repository->getById($data);
 
         $data['hits'] = (int) $result->hits;
         $this->repository->update($data);

@@ -2,17 +2,17 @@
 
 namespace App\Action;
 
-use App\Domain\URL\Service\UrlUpdater;
+use App\Domain\URL\Service\UrlGetter;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 final class UrlAction
 {
-    private $urlUpdater;
+    private $urlGetter;
 
-    public function __construct(UrlUpdater $urlUpdater)
+    public function __construct(UrlGetter $urlGetter)
     {
-        $this->urlUpdater = $urlUpdater;
+        $this->urlGetter = $urlGetter;
     }
 
     public function __invoke(
@@ -20,7 +20,7 @@ final class UrlAction
         ResponseInterface $response,
         $args
     ): ResponseInterface {
-        $urlToRedirect = $this->urlUpdater->getAndUpdateUrl($args);
+        $urlToRedirect = $this->urlGetter->getAndUpdateUrl($args);
 
         return $response
             ->withHeader('Location', $urlToRedirect)

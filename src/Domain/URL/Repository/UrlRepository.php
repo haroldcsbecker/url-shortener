@@ -61,11 +61,10 @@ class UrlRepository
      *
      * @return UrlData
      */
-    public function get(array $data)
+    public function getById(array $data)
     {
         return $this->connection->table('url')->find($data['id']);
     }
-
 
     /**
      * Update url row.
