@@ -35,10 +35,10 @@ $settings['db'] = [
     'driver' => 'mysql',
     'host' => 'localhost',
     'username' => 'root',
-    'database' => 'test',
-    'password' => '',
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_unicode_ci',
+    'database' => 'shortener',
+    'password' => 'root',
+    'charset' => 'utf8',
+    'collation' => 'utf8_unicode_ci',
     'driver_options' => [
        // Turn off persistent connections
        PDO::ATTR_PERSISTENT => false,

@@ -17,16 +17,13 @@ final class UserCreateAction
 
     public function __invoke(
         ServerRequestInterface $request,
-        ResponseInterface $response,
-        $args
+        ResponseInterface $response
     ): ResponseInterface {
-        $data = (array)$request->getParsedBody();
+        $data = (array) $request->getParsedBody();
 
         try {
             $userId = $this->userCreator->createUser($data);
         } catch (\Exception $e) {
-
-            $response->getBody()->write($e->getMessage());
             return $response->withStatus(409);
         }
 

@@ -8,7 +8,7 @@ use App\Exception\ValidationException;
 /**
  * Service.
  */
-final class UserCreator
+final class UserRemover
 {
     /**
      * @var UserRepository
@@ -26,18 +26,16 @@ final class UserCreator
     }
 
     /**
-     * Create a new user.
+     * Remove user.
      *
      * @param array $data The form data
      *
-     * @return int The new user ID
+     * @return int The user ID
      */
-    public function createUser(array $data): int
+    public function removeUser(array $data): void
     {
-        $this->validateNewUser($data);
-        $userId = $this->repository->insert($data);
-
-        return $userId;
+        $this->validateInput($data);
+        $this->repository->delete($data);
     }
 
     /**
@@ -49,11 +47,11 @@ final class UserCreator
      *
      * @return void
      */
-    private function validateNewUser(array $data): void
+    private function validateInput(array $data): void
     {
         $errors = [];
-        if (empty($data['name'])) {
-            $errors['name'] = 'Input required';
+        if (empty($data['userId'])) {
+            $errors['userId'] = 'Input required';
         }
 
         if ($errors) {

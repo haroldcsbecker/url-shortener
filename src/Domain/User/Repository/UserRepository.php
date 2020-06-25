@@ -31,10 +31,22 @@ class UserRepository
      *
      * @return int The new ID
      */
-    public function insertUser(array $user): int
+    public function insert(array $user): int
     {
         $values = ['name' => $user['name']];
 
         return $this->connection->table('user')->insertGetId($values);
+    }
+
+    /**
+     * Delete user row.
+     *
+     * @param array $data The user identifier
+     *
+     * @return void
+     */
+    public function delete(array $data): void
+    {
+        $this->connection->table('user')->delete($data['userId']);
     }
 }
