@@ -3,11 +3,13 @@
 use Slim\App;
 
 return function (App $app) {
-    $app->get('/:id', \App\Action\HomeAction::class);
-    $app->get('/users/:userId', \App\Action\UserStatsAction::class);
-    $app->get('/users/:userid/stats', \App\Action\UserStatsAction::class);
+    $app->get('/{id}', \App\Action\UrlAction::class);
     $app->post('/users', \App\Action\UserCreateAction::class);
-    $app->post('/users/:userid/urls', \App\Action\UserUrlCreateAction::class);
-    $app->delete('/urls/:id', \App\Action\DeleteUrlAction::class);
-    $app->delete('/users/:userId', \App\Action\DeleteUserAction::class);
+    $app->post('/users/{userId}/urls', \App\Action\UrlCreateAction::class);
+    $app->delete('/users/{userId}', \App\Action\RemoveUserAction::class);
+    $app->delete('/urls/{id}', \App\Action\RemoveUrlAction::class);
+    $app->get('/users/{userId}/stats', \App\Action\UserStatsAction::class);
+    // $app->get('/stats', \App\Action\UserStatsAction::class);
+    $app->get('/stats/{id}', \App\Action\UserAction::class);
+
 };

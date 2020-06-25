@@ -54,18 +54,30 @@ class UrlRepository
         $this->connection->table('url')->delete($data['id']);
     }
 
-    //
-    // /**
-    //  * Update url row.
-    //  *
-    //  * @param array $url The url
-    //  *
-    //  * @return int The new ID
-    //  */
-    // public function update(array $data): int
-    // {
-    //     $values = ['hits' => $data['name']];
-    //
-    //     return $this->connection->table('url')->update($values);
-    // }
+    /**
+     * Get url row.
+     *
+     * @param array $data The url identifier
+     *
+     * @return UrlData
+     */
+    public function get(array $data)
+    {
+        return $this->connection->table('url')->find($data['id']);
+    }
+
+
+    /**
+     * Update url row.
+     *
+     * @param array $url The url
+     *
+     */
+    public function update(array $data)
+    {
+        $values = ['hits' => $data['hits'] + 1];
+        $this->connection->table('url')
+            ->where(['id' => $data['id']])
+            ->update($values);
+    }
 }
