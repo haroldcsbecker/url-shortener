@@ -30,7 +30,7 @@ final class UserRemover
      *
      * @param array $data The form data
      *
-     * @return int The user ID
+     * @return void
      */
     public function removeUser(array $data): void
     {

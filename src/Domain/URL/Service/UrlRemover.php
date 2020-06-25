@@ -1,43 +1,41 @@
 <?php
 
-namespace App\Domain\User\Service;
+namespace App\Domain\URL\Service;
 
-use App\Domain\User\Repository\UserRepository;
+use App\Domain\URl\Repository\UrlRepository;
 use App\Exception\ValidationException;
 
 /**
  * Service.
  */
-final class UserCreator
+final class UrlRemover
 {
     /**
-     * @var UserRepository
+     * @var UrlRepository
      */
     private $repository;
 
     /**
      * The constructor.
      *
-     * @param UserRepository $repository The repository
+     * @param UrlRepository $repository The repository
      */
-    public function __construct(UserRepository $repository)
+    public function __construct(UrlRepository $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * Create a new user.
+     * Remove url.
      *
      * @param array $data The form data
      *
-     * @return int The new user ID
+     * @return void
      */
-    public function createUser(array $data): int
+    public function removeUrl(array $data): void
     {
         $this->validateInput($data);
-        $userId = $this->repository->insert($data);
-
-        return $userId;
+        $this->repository->delete($data);
     }
 
     /**
@@ -52,8 +50,8 @@ final class UserCreator
     private function validateInput(array $data): void
     {
         $errors = [];
-        if (empty($data['name'])) {
-            $errors['name'] = 'Input required';
+        if (empty($data['id'])) {
+            $errors['id'] = 'Input required';
         }
 
         if ($errors) {

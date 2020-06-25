@@ -41,6 +41,19 @@ class UrlRepository
 
         return $this->connection->table('url')->insertGetId($values);
     }
+
+    /**
+     * Delete url row.
+     *
+     * @param array $data The url identifier
+     *
+     * @return void
+     */
+    public function delete(array $data): void
+    {
+        $this->connection->table('url')->delete($data['id']);
+    }
+
     //
     // /**
     //  * Update url row.
