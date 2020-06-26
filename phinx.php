@@ -8,17 +8,17 @@ return
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',
-        'default_environment' => 'development',
-        // 'production' => [
+        'default_environment' => 'production',
+        // 'development' => [
         //     'adapter' => 'mysql',
         //     'host' => 'localhost',
-        //     'name' => 'production_db',
+        //     'name' => 'shortener',
         //     'user' => 'root',
-        //     'pass' => '',
+        //     'pass' => 'root',
         //     'port' => '3306',
         //     'charset' => 'utf8',
         // ],
-        'development' => [
+        'production' => [
             'adapter' => 'mysql',
             'host' => 'localhost',
             'name' => 'shortener',
