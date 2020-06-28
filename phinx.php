@@ -20,7 +20,7 @@ return
         // ],
         'production' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
+            'host' => '172.18.0.2',
             'name' => 'shortener',
             'user' => 'root',
             'pass' => 'root',

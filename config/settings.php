@@ -33,7 +33,7 @@ $settings['error'] = [
 // Database settings
 $settings['db'] = [
     'driver' => 'mysql',
-    'host' => 'localhost',
+    'host' => '172.18.0.2',
     'username' => 'root',
     'database' => 'shortener',
     'password' => 'root',

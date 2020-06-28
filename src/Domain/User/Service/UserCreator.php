@@ -52,8 +52,8 @@ final class UserCreator
     private function validateInput(array $data): void
     {
         $errors = [];
-        if (empty($data['id'])) {
-            $errors['id'] = 'Input required';
+        if (empty($data['name'])) {
+            $errors['name'] = 'Input required';
         }
 
         if ($errors) {
