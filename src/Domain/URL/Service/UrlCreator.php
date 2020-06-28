@@ -10,6 +10,7 @@ use App\Exception\ValidationException;
  */
 final class UrlCreator
 {
+    const DEFAULT_URL = 'http://short.com/';
     /**
      * @var UrlRepository
      */
@@ -34,7 +35,7 @@ final class UrlCreator
      */
     public function createUrl(array $data): array
     {
-        $this->validateNewUrl($data);
+        $this->validateInput($data);
         $data['shortUrl'] = $this->createShortUrl($data);
         $data['id'] = $this->repository->insert($data);
 
@@ -53,7 +54,7 @@ final class UrlCreator
     private function createShortUrl(): string
     {
         $ramdomHexChars = sprintf('%06X', mt_rand(0, 16777215));
-        $shortUrl = sprintf('http://short.com/%s', $ramdomHexChars);
+        $shortUrl = sprintf(self::DEFAULT_URL . '%s', $ramdomHexChars);
 
         return $shortUrl;
     }
@@ -67,7 +68,7 @@ final class UrlCreator
      *
      * @return void
      */
-    private function validateNewUrl(array $data): void
+    private function validateInput(array $data): void
     {
         $errors = [];
         if (empty($data['url'])) {

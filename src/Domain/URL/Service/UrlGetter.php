@@ -8,7 +8,7 @@ use App\Exception\ValidationException;
 /**
  * Service.
  */
-final class UrlGetter
+class UrlGetter
 {
     /**
      * @var UrlRepository
@@ -30,17 +30,20 @@ final class UrlGetter
      *
      * @param array $data The form data
      *
-     * @return string
      */
-    public function getAndUpdateUrl(array $data): string
+    public function getAndUpdateUrl(array $data)
     {
         $this->validateInput($data);
         $result = $this->repository->getById($data);
 
+        if (!$result) {
+            return;
+        }
+
         $data['hits'] = (int) $result->hits;
         $this->repository->update($data);
 
-        return $result->url;
+        return $result;
     }
 
     /**

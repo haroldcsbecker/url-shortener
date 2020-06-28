@@ -20,10 +20,14 @@ final class UrlAction
         ResponseInterface $response,
         $args
     ): ResponseInterface {
-        $urlToRedirect = $this->urlGetter->getAndUpdateUrl($args);
+        $result = $this->urlGetter->getAndUpdateUrl($args);
+
+        if (!$result->url) {
+            return $response->withStatus(404);
+        }
 
         return $response
-            ->withHeader('Location', $urlToRedirect)
+            ->withHeader('Location', $result->url)
             ->withStatus(301);
     }
 }
