@@ -3,11 +3,10 @@
 namespace App\Test\TestCase\Domain\URL\Service;
 
 use PHPUnit\Framework\TestCase;
-use App\Domain\Url\Data\UrlData;
 use Prophecy\PhpUnit\ProphecyTrait;
-use App\Domain\Url\Service\UrlCreator;
+use App\Domain\URL\Service\UrlCreator;
 use App\Exception\ValidationException;
-use App\Domain\Url\Repository\UrlRepository;
+use App\Domain\URL\Repository\UrlRepository;
 
 class UrlCreatorTest extends TestCase
 {

@@ -33,7 +33,7 @@ class UserRepository
      */
     public function insert(array $user): int
     {
-        $values = ['name' => $user['name']];
+        $values = ['name' => $user['id']];
 
         return $this->connection->table('user')->insertGetId($values);
     }

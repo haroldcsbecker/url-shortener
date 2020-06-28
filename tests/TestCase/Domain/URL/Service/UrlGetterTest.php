@@ -3,7 +3,7 @@
 namespace App\Test\TestCase\Domain\URL\Service;
 
 use PHPUnit\Framework\TestCase;
-use App\Domain\Url\Data\UrlData;
+use App\Domain\URL\Data\UrlData;
 use Prophecy\PhpUnit\ProphecyTrait;
 use App\Domain\URL\Service\UrlGetter;
 use App\Exception\ValidationException;
